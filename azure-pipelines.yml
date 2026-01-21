@@ -1,0 +1,19 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+
+- script: |
+    pip install flask
+  displayName: 'Install Flask'
+
+- script: |
+    python flask_app/app.py &
+    sleep 10
+  displayName: 'Run Flask App'
